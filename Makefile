@@ -13,3 +13,8 @@ start:
 	uv run manage.py runserver 0.0.0.0:8000
 
 .PHONY: start
+
+fix_lint:
+	uv run ruff check --fix .
+
+PHONY: fix_lint
