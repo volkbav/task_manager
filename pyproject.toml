@@ -17,6 +17,7 @@ packages = ["task_manager"]
 
 [dependency-groups]
 dev = [
+    "dj-database-url>=3.0.1",
     "python-dotenv>=1.2.1",
     "ruff>=0.14.3",
 ]
