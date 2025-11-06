@@ -1,0 +1,32 @@
+<!-- task_manager/templates/base.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <title>{% block title %}Менеджер задач{% endblock %}</title>
+</head>
+  <body>
+    
+    <header></header>
+    
+    <!--вывод flash-->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }}" role="alert">
+            {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+    <!--вставка контента-->
+    {% block content %}
+    {% endblock %}
+    
+      <footer>
+          &copy; 2025 Alex Berezov
+    </footer>
+
+    </body>
+</html>
