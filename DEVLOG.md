@@ -4,3 +4,4 @@
 ## 2025-11-06
 - настроить тесты на github Action
 - добавить badge SonarQube
+- развернуть на render
