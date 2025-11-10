@@ -1,22 +1,35 @@
 <!-- task_manager/templates/base.html -->
+{# Load the tag library #}
+{% load django_bootstrap5 %}
 
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
-  <title>{% block title %}Менеджер задач{% endblock %}</title>
-</head>
+    <title>{% block title %}Менеджер задач{% endblock %}</title>
+  </head>
   <body>
-    
-    <header></header>
-    
+    {% include 'header.html'%}
+    <!--вывод flash-->
+
     <!--вставка контента-->
     {% block content %}
+    (no content)
     {% endblock %}
     
-      <footer>
-          &copy; 2025 Alex Berezov
+    <footer class="border-top p-2 position-absolute bottom-0 start-0 end-0">
+      <div class="container-lg">
+        <div class="text-center">
+          created at Alex Berezov 2025
+        </div>
+      </div>
     </footer>
 
-    </body>
+  </body>
 </html>
