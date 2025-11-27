@@ -31,3 +31,6 @@ start:
 	uv run python manage.py runserver 0.0.0.0:8000
 .PHONY: start
 
+test:
+	uv run pytest --cov=task_manager --cov-report=xml
+.PHONY: test
