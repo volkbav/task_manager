@@ -50,9 +50,9 @@ if RENDER_DOMAIN:
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'django.contrib.admin',  # ядро аутентификации фреймворка и стандартные модели
     'django.contrib.auth',
-    'django.contrib.contenttypes',
+    'django.contrib.contenttypes',  # система контектса django. отвечает за доступ и привязку создаваемых моделей
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -60,17 +60,17 @@ INSTALLED_APPS = [
     'django_bootstrap5',
     # add my app
     'task_manager',
-    'task_manager.users'
+    'task_manager.users',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',  # хранение данных о сессии
     'django.middleware.locale.LocaleMiddleware',  # выбор языка на основе браузера
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',  # доступ к request.user и системы login/logout
+    'django.contrib.messages.middleware.MessageMiddleware',  # флеш
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
