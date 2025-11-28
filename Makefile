@@ -7,6 +7,10 @@ collectstatic:
 	uv run python manage.py collectstatic --noinput
 .PHONY: collectstatic
 
+compilemessages:
+	uv run django-admin compilemessages
+.PHONY: compilemessages
+
 install:
 	uv sync
 .PHONY: install
@@ -18,6 +22,10 @@ fix_lint:
 lint:
 	uv run ruff check .
 PHONY: lint
+
+messages:
+	uv run django-admin makemessages -l ru
+.PHONY: messages
 
 migrate:
 	uv run python manage.py migrate
