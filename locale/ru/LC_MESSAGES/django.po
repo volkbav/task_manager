@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-29 22:35+0300\n"
+"POT-Creation-Date: 2025-11-29 23:13+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,7 +53,8 @@ msgstr "Привет, %(who)s!"
 msgid "Register"
 msgstr "Регистрация"
 
-#: task_manager/templates/users/index.html:12 task_manager/users/forms.py:32
+#: task_manager/templates/users/index.html:12 task_manager/users/forms.py:33
+#: task_manager/users/forms.py:46
 msgid "Username"
 msgstr "Имя пользователя"
 
@@ -73,33 +74,32 @@ msgstr "Изменить"
 msgid "Delete"
 msgstr "Удалить"
 
-#: task_manager/users/forms.py:12 task_manager/users/forms.py:33
+#: task_manager/users/forms.py:13 task_manager/users/forms.py:15
+#: task_manager/users/forms.py:47
 msgid "Password"
 msgstr "Пароль"
 
-#: task_manager/users/forms.py:13
+#: task_manager/users/forms.py:16
 msgid "Your password must contain at least 3 characters."
 msgstr "Ваш пароль должен содержать как минимум 3 символа."
 
-#: task_manager/users/forms.py:17
+#: task_manager/users/forms.py:21 task_manager/users/forms.py:23
 msgid "Confirm password"
 msgstr "Подтверждение пароля"
 
-#: task_manager/users/forms.py:18
+#: task_manager/users/forms.py:24
 msgid "Please enter the password again to confirm."
 msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
 
-#: task_manager/users/forms.py:30
-#, fuzzy
-#| msgid "Full name"
+#: task_manager/users/forms.py:31 task_manager/users/forms.py:44
 msgid "First name"
-msgstr "Полное имя"
+msgstr "Имя"
 
-#: task_manager/users/forms.py:31
+#: task_manager/users/forms.py:32 task_manager/users/forms.py:45
 msgid "Last name"
 msgstr "Фамилия"
 
-#: task_manager/users/forms.py:37
+#: task_manager/users/forms.py:51
 msgid ""
 "Required field. No more than 150 characters. Only letters, numbers, and "
 "symbols @/./+/-/_."
@@ -107,7 +107,7 @@ msgstr ""
 "Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./"
 "+/-/_."
 
-#: task_manager/users/forms.py:48
+#: task_manager/users/forms.py:62
 msgid "Passwords do not match"
 msgstr "Введенные пароли не совпадают."
 
