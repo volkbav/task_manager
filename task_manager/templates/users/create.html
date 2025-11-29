@@ -11,11 +11,11 @@
 
     {% for field in form %}
       <div class="mb-3">
-        {{ field.label_tag }}            {# Имя, Фамилия, … #}
-        {{ field }}                      {# Сам input #}
+        {{ field.label_tag }}            
+        {{ field }}                      
         {% if field.help_text %}
           <div class="form-text">
-            {{ field.help_text|safe }}   {# Текст под полем #}
+            {{ field.help_text|safe }}   
           </div>
         {% endif %}
         {% for error in field.errors %}

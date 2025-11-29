@@ -8,20 +8,34 @@ from django.utils.translation import gettext_lazy as _
 
 class UserFormCreate(ModelForm):
     password = forms.CharField(
-        widget=forms.PasswordInput,
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': _("Password"),
+        }),
         label=_("Password"),
         help_text=_("Your password must contain at least 3 characters.")
     )
     password_confirm = forms.CharField(
-        widget=forms.PasswordInput,
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': _("Confirm password"),
+        }),
         label=_("Confirm password"),
         help_text=_("Please enter the password again to confirm.",)
     )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-control'
+
+        placeholders = {
+            'first_name': _("First name"),
+            'last_name': _("Last name"),
+            'username': _("Username"),
+        }
+        for name, field in self.fields.items():
+            field.widget.attrs.setdefault('class', 'form-control')
+            if name in placeholders:
+                field.widget.attrs['placeholder'] = placeholders[name]
 
     class Meta:
         model = User
