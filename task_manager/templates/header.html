@@ -21,10 +21,15 @@
         <li class="nav-item"> 
           <a class="nav-link" aria-current="page" href="#">{% trans "Tasks" %}</a>
         </li>
-        <li class="nav-item"> 
-          <a class="nav-link" aria-current="page" href="#">{% trans "Log out" %}</a>
+        <li class="nav-item">
+          <form action="{% url 'users:logout' %}" method="post" style="display: inline;">
+          {% csrf_token %}
+            <button type="submit" class="nav-link btn" style="cursor:pointer;">
+              {% trans "Log out" %}
+            </button>
+          </form>
         </li>
-
+        
         {% else %}
         <li class="nav-item"> 
           <a class="nav-link" aria-current="page" href="{% url "users:users" %}">{% trans "Users" %}</a>
