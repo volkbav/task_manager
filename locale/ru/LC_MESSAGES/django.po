@@ -48,8 +48,6 @@ msgid "Hello, %(who)s!"
 msgstr "Привет, %(who)s!"
 
 #: task_manager/templates/users/create.html:30
-#, fuzzy
-#| msgid "Registration"
 msgid "Register"
 msgstr "Регистрация"
 
