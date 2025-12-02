@@ -26,7 +26,7 @@ class UserFormCreateView(View):
         form = UserFormCreate(request.POST)
         if form.is_valid():  # Если данные корректные, то сохраняем данные формы
             form.save()
-            return redirect('users')  # Редирект на указанный маршрут
+            return redirect('users:users')  # Редирект на указанный маршрут
         # Если данные некорректные, то возвращаем человека обратно 
         # на страницу с заполненной формой
         return render(request, 'users/create.html', {'form': form})
