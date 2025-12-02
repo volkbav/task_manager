@@ -45,5 +45,8 @@ start:
 
 test:
 	uv run pytest --cov=task_manager --cov-report=xml
-	uv run manage.py test
 .PHONY: test
+
+test_django:
+	uv run manage.py test
+.PHONY: test_django
