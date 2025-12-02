@@ -7,7 +7,7 @@ collectstatic:
 	uv run python manage.py collectstatic --noinput
 .PHONY: collectstatic
 
-compilemessages:
+update_sql:
 	uv run django-admin compilemessages
 .PHONY: compilemessages
 
