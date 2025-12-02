@@ -15,7 +15,7 @@
         {{ field }}                      
         {% if field.help_text %}
           <div class="form-text">
-            {{ field.help_text|safe }}   {# NOSONAR #}
+            {{ field.help_text }}
           </div>
         {% endif %}
         {% for error in field.errors %}
