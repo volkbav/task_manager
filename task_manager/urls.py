@@ -18,10 +18,20 @@ from django.contrib import admin
 from django.urls import include, path
 
 # my views
-from task_manager.views import HomePageView
+from task_manager.views import (
+    HomePageView,
+    MyLoginView,
+    MyLogoutView
+)
+from task_manager.users.forms import UserFormLogin
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='root'),
     path('admin/', admin.site.urls),
-    path('users/', include('task_manager.users.urls'))
+    path('login/', MyLoginView.as_view(
+        template_name="registration/login.html",
+        authentication_form=UserFormLogin,
+    ), name='login'),
+    path('logout/', MyLogoutView.as_view(), name='logout'),
+    path('users/', include('task_manager.users.urls')),
 ]
