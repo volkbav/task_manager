@@ -16,7 +16,10 @@ class UserPermissionMixin(LoginRequiredMixin):
 
         user_pk = kwargs.get("pk")
         if request.user.pk != user_pk:
-            messages.error(request, _("You don't have the rights to change another user."))
+            messages.error(
+                request,
+                _("You don't have the rights to change another user.")
+                )
             return redirect("users:users")
 
         return super().dispatch(request, *args, **kwargs)
