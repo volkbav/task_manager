@@ -20,7 +20,7 @@ class UsersIndexView(ListView):
 
 
 # path 'create/
-class UserFormCreateView(View):
+class UserCreateView(View):
     def get(self, request, *args, **kwargs):
         form = UserFormCreate()
         return render(request, "users/create.html", {"form": form})
@@ -29,11 +29,10 @@ class UserFormCreateView(View):
         form = UserFormCreate(request.POST)
         if form.is_valid():  # Если данные корректные, то сохраняем данные формы
             form.save()
-            messages.info(request, _("User created"))
+            messages.success(request, _("User created"))
             return redirect('users:login')  # Редирект на указанный маршрут
         # Если данные некорректные, то возвращаем человека обратно 
         # на страницу с заполненной формой
-        messages.error(request, _("Login failed"))
         return render(request, 'users/create.html', {'form': form})
 
 
@@ -52,3 +51,29 @@ class MyLogoutView(LogoutView):
     def dispatch(self, request, *args, **kwargs):
         messages.info(request, _("You have logged out"))
         return super().dispatch(request, *args, **kwargs)
+
+ 
+class UserUpdateView(View):
+    def get(self, request, *args, **kwargs):
+        user_pk = kwargs.get('pk')
+        user = User.objects.get(pk=user_pk)
+        form = UserFormCreate(instance=user)
+        return render(
+            request,
+            "users/update.html",
+            {
+                "form": form,
+                "user_pk": user_pk
+            }
+        )
+    def post(self, request, *args, **kwargs):
+        user_pk = kwargs.get('pk')
+        user = User.objects.get(pk=user_pk)
+        form = UserFormCreate(request.POST,instance=user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _("User successfully edited"))
+            return redirect('users:users')  # Редирект на указанный маршрут
+        # Если данные некорректные, то возвращаем человека обратно 
+        # на страницу с заполненной формой
+        return render(request, 'users/create.html', {'form': form})
