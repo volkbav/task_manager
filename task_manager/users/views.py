@@ -5,12 +5,11 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import redirect, render
+from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.generic import ListView
-from django.utils.translation import gettext_lazy as _
+
 from .forms import UserFormCreate, UserFormLogin
-
-
 
 
 # path ''
@@ -37,6 +36,7 @@ class UserFormCreateView(View):
         messages.error(request, _("Login failed"))
         return render(request, 'users/create.html', {'form': form})
 
+
 class MyLoginView(LoginView):
     form_class = UserFormLogin
     template_name = "registration/login.html"
@@ -45,6 +45,7 @@ class MyLoginView(LoginView):
         messages.success(self.request, _("Logged in successfully"))
         return super().form_valid(form)
     
+
 class MyLogoutView(LogoutView):
     next_page = 'users:login'
 

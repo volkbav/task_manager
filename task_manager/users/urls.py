@@ -1,12 +1,11 @@
-from django.contrib.auth.views import LogoutView, LoginView
 from django.urls import path
 
 from task_manager.users.forms import UserFormLogin
 from task_manager.users.views import (
-    UserFormCreateView,
-    UsersIndexView,
     MyLoginView,
     MyLogoutView,
+    UserFormCreateView,
+    UsersIndexView,
 )
 
 app_name = 'users'

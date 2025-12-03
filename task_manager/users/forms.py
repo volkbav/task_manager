@@ -73,6 +73,7 @@ class UserFormCreate(ModelForm):
             user.save()
         return user
     
+
 class UserFormLogin(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
