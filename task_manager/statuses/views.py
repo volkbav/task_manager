@@ -4,6 +4,7 @@ from .models import Status
 
 # Create your views here.
 
+
 # path ''
 class StatusIndexView(ListView):
     model = Status
