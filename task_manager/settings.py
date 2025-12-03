@@ -50,19 +50,22 @@ if RENDER_DOMAIN:
 # Application definition
 
 INSTALLED_APPS = [
+    # add my app
+    'task_manager',
+    'task_manager.users',
+    # add bootstrap
+    'django_bootstrap5',
+    # add django_extensions for REPL
+    'django_extensions',
+    #django app
     'django.contrib.admin',  # ядро аутентификации фреймворка и стандартные модели
     'django.contrib.auth',
     'django.contrib.contenttypes',  # система контектса django. отвечает за доступ и привязку создаваемых моделей
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # add bootstrap
-    'django_bootstrap5',
-    # add django_extensions for REPL
-    'django_extensions',
-    # add my app
-    'task_manager',
-    'task_manager.users',
+    
+    
 ]
 
 MIDDLEWARE = [
