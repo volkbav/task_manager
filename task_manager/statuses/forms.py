@@ -1,6 +1,8 @@
 from django.forms import ModelForm
-from .models import Status
 from django.utils.translation import gettext_lazy as _
+
+from .models import Status
+
 
 class StatuseForm(ModelForm):
     class Meta:
@@ -10,6 +12,3 @@ class StatuseForm(ModelForm):
             'name': _("Name"),
         }
     
-    """def clean(self):
-        cleaned_data = super().clean()
-        name = cleaned_data"""

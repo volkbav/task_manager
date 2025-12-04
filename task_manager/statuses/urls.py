@@ -1,6 +1,6 @@
 from django.urls import path
 
-from task_manager.statuses.views import StatusIndexView, StatusCreateView
+from task_manager.statuses.views import StatusCreateView, StatusIndexView
 
 app_name = 'statuses'
 
