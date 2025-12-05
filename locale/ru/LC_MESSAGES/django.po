@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-05 10:36+0300\n"
+"POT-Creation-Date: 2025-12-05 11:41+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgstr "Статус успешно создан"
 msgid "Status successfully deleted"
 msgstr "Статус успешно удален"
 
-#: task_manager/statuses/views.py:60 task_manager/users/views.py:62
+#: task_manager/statuses/views.py:60 task_manager/users/views.py:65
 msgid "Ooops"
 msgstr "Ой"
 
@@ -45,9 +45,15 @@ msgstr "Ой"
 msgid "Status successfully edited"
 msgstr "Статус успешно изменен"
 
-#: task_manager/templates/base.html:32
+#: task_manager/templates/base.html:33
 msgid "created at Alex Berezov 2025"
 msgstr "Автор: Александр Березов"
+
+#: task_manager/templates/form_update.html:25
+#: task_manager/templates/statuses/index.html:25
+#: task_manager/templates/users/index.html:26
+msgid "Edit"
+msgstr "Изменить"
 
 #: task_manager/templates/header.html:8
 msgid "Task manager"
@@ -119,13 +125,6 @@ msgstr "Да, удалить"
 msgid "Creation date"
 msgstr "Дата создания"
 
-#: task_manager/templates/statuses/index.html:25
-#: task_manager/templates/statuses/update.html:30
-#: task_manager/templates/users/index.html:26
-#: task_manager/templates/users/update.html:30
-msgid "Edit"
-msgstr "Изменить"
-
 #: task_manager/templates/statuses/index.html:26
 #: task_manager/templates/users/index.html:27
 msgid "Delete"
@@ -134,10 +133,6 @@ msgstr "Удалить"
 #: task_manager/templates/statuses/update.html:7
 msgid "Changing the status"
 msgstr "Изменение статуса"
-
-#: task_manager/templates/users/create.html:30
-msgid "Register"
-msgstr "Регистрация"
 
 #: task_manager/templates/users/delete.html:6
 msgid "Delete a user"
@@ -207,13 +202,17 @@ msgstr "У вас нет прав для изменения другого по�
 msgid "User created"
 msgstr "Пользователь создан"
 
-#: task_manager/users/views.py:60
+#: task_manager/users/views.py:37
+msgid "Register"
+msgstr "Регистрация"
+
+#: task_manager/users/views.py:63
 #, fuzzy
 #| msgid "User successfully edited"
 msgid "User successfully deleted"
 msgstr "Пользователь успешно удален"
 
-#: task_manager/users/views.py:91
+#: task_manager/users/views.py:94
 msgid "User successfully edited"
 msgstr "Пользователь успешно изменен"
 

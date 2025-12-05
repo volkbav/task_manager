@@ -22,7 +22,11 @@ class StatusIndexView(StatusRequreMessageMixin, ListView):
 class StatusCreateView(StatusRequreMessageMixin, View):
     def get(self, request, *args, **kwargs):
         form = StatusForm()
-        return render(request, "statuses/create.html", {"form": form})
+        context = {
+            "form": form,
+            "button": _("Create"),
+        }
+        return render(request, "statuses/create.html", context)
         
     def post(self, request, *args, **kwargs):
         form = StatusForm(request.POST)
@@ -31,8 +35,11 @@ class StatusCreateView(StatusRequreMessageMixin, View):
             form.save()
             messages.success(request, _("The status was created successfully"))
             return redirect('statuses:statuses') 
-        
-        return render(request, 'statuses/create.html', {'form': form})
+        context = {
+            'form': form,
+            'button': _("Create"),
+        }
+        return render(request, 'statuses/create.html', context)
 
 
 # path 'delete'
@@ -67,13 +74,15 @@ class StatusUpdateView(StatusRequreMessageMixin, View):
         status_pk = kwargs.get('pk')
         status = Status.objects.get(pk=status_pk)
         form = StatusForm(instance=status)
+        context = {
+            "form": form,
+            "status_pk": status_pk,
+            "button": _("Edit"),
+        }
         return render(
             request,
             "statuses/update.html",
-            {
-                "form": form,
-                "status_pk": status_pk
-            }
+            context,
         )
 
     def post(self, request, *args, **kwargs):
@@ -86,6 +95,10 @@ class StatusUpdateView(StatusRequreMessageMixin, View):
             form.save()
             messages.success(request, _("Status successfully edited"))
             return redirect('statuses:statuses')
-        
-        return render(request, 'statuses/update.html', {'form': form})
+        context = {
+            'form': form,
+            "button": _("Edit"),
+            }
+
+        return render(request, 'statuses/update.html', context)
     

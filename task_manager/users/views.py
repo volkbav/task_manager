@@ -24,17 +24,24 @@ class UsersIndexView(ListView):
 class UserCreateView(View):
     def get(self, request, *args, **kwargs):
         form = UserFormCreate()
-        return render(request, "users/create.html", {"form": form})
+        context = {
+            'form': form,
+            'button': _("Register"),
+        }
+        return render(request, "users/create.html", context)
         
     def post(self, request, *args, **kwargs):
         form = UserFormCreate(request.POST)
-        if form.is_valid():  # Если данные корректные, то сохраняем данные формы
+        if form.is_valid():
             form.save()
             messages.success(request, _("User created"))
-            return redirect('login')  # Редирект на указанный маршрут
-        # Если данные некорректные, то возвращаем человека обратно 
-        # на страницу с заполненной формой
-        return render(request, 'users/create.html', {'form': form})
+            return redirect('login')
+        context = {
+            'form': form,
+            'button': _("Register"),
+        }
+
+        return render(request, 'users/create.html', context)
 
 
 # path 'delete'
@@ -69,13 +76,15 @@ class UserUpdateView(UserPermissionMixin, View):
         user_pk = kwargs.get('pk')
         user = User.objects.get(pk=user_pk)
         form = UserFormCreate(instance=user)
+        context = {
+            "form": form,
+            "user_pk": user_pk,
+            "button": _("Edit"),
+        }
         return render(
             request,
             "users/update.html",
-            {
-                "form": form,
-                "user_pk": user_pk
-            }
+            context,
         )
 
     def post(self, request, *args, **kwargs):
@@ -91,5 +100,9 @@ class UserUpdateView(UserPermissionMixin, View):
             messages.success(request, _("User successfully edited"))
             return redirect('users:users')
         
-        return render(request, 'users/update.html', {'form': form})
+        context = {
+            'form': form,
+            "button": _("Edit"),
+        }
+        return render(request, 'users/update.html', context)
 
