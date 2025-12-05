@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-05 11:41+0300\n"
+"POT-Creation-Date: 2025-12-05 11:59+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,31 +29,36 @@ msgstr "Имя"
 msgid "You are not logged in! Please log in."
 msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
 
-#: task_manager/statuses/views.py:32
+#: task_manager/statuses/views.py:27 task_manager/statuses/views.py:40
+msgid "Create"
+msgstr "Создать"
+
+#: task_manager/statuses/views.py:36
 msgid "The status was created successfully"
 msgstr "Статус успешно создан"
 
-#: task_manager/statuses/views.py:58
+#: task_manager/statuses/views.py:65
 msgid "Status successfully deleted"
 msgstr "Статус успешно удален"
 
-#: task_manager/statuses/views.py:60 task_manager/users/views.py:65
+#: task_manager/statuses/views.py:67 task_manager/users/views.py:69
 msgid "Ooops"
 msgstr "Ой"
 
-#: task_manager/statuses/views.py:87
+#: task_manager/statuses/views.py:80 task_manager/statuses/views.py:100
+#: task_manager/templates/statuses/index.html:25
+#: task_manager/templates/users/index.html:26 task_manager/users/views.py:82
+#: task_manager/users/views.py:105
+msgid "Edit"
+msgstr "Изменить"
+
+#: task_manager/statuses/views.py:96
 msgid "Status successfully edited"
 msgstr "Статус успешно изменен"
 
 #: task_manager/templates/base.html:33
 msgid "created at Alex Berezov 2025"
 msgstr "Автор: Александр Березов"
-
-#: task_manager/templates/form_update.html:25
-#: task_manager/templates/statuses/index.html:25
-#: task_manager/templates/users/index.html:26
-msgid "Edit"
-msgstr "Изменить"
 
 #: task_manager/templates/header.html:8
 msgid "Task manager"
@@ -104,12 +109,6 @@ msgstr "Привет, %(who)s!"
 #: task_manager/templates/statuses/index.html:8
 msgid "Create status"
 msgstr "Создать статус"
-
-#: task_manager/templates/statuses/create.html:30
-#, fuzzy
-#| msgid "Creation date"
-msgid "Create"
-msgstr "Дата создания"
 
 #: task_manager/templates/statuses/delete.html:6
 msgid "Delete a status"
@@ -198,21 +197,19 @@ msgstr ""
 msgid "You don't have the rights to change another user."
 msgstr "У вас нет прав для изменения другого пользователя."
 
-#: task_manager/users/views.py:33
-msgid "User created"
-msgstr "Пользователь создан"
-
-#: task_manager/users/views.py:37
+#: task_manager/users/views.py:29 task_manager/users/views.py:41
 msgid "Register"
 msgstr "Регистрация"
 
-#: task_manager/users/views.py:63
-#, fuzzy
-#| msgid "User successfully edited"
+#: task_manager/users/views.py:37
+msgid "User created"
+msgstr "Пользователь создан"
+
+#: task_manager/users/views.py:67
 msgid "User successfully deleted"
 msgstr "Пользователь успешно удален"
 
-#: task_manager/users/views.py:94
+#: task_manager/users/views.py:100
 msgid "User successfully edited"
 msgstr "Пользователь успешно изменен"
 
