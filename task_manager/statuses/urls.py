@@ -4,7 +4,7 @@ from task_manager.statuses.views import (
     StatusCreateView,
     StatusDeleteView,
     StatusIndexView,
-#    StatusUpdateView,
+    StatusUpdateView,
 )
 
 app_name = 'statuses'
@@ -13,5 +13,5 @@ urlpatterns = [
     path('', StatusIndexView.as_view(), name='statuses'),
     path('create/', StatusCreateView.as_view(), name='create'),
     path('<int:pk>/delete/', StatusDeleteView.as_view(), name='delete'), 
- #   path('<int:pk>/update/', StatusUpdateView.as_view(), name='update'),
+    path('<int:pk>/update/', StatusUpdateView.as_view(), name='update'),
 ]

@@ -92,4 +92,4 @@ class UserUpdateView(UserPermissionMixin, View):
             return redirect('users:users')
         
         return render(request, 'users/update.html', {'form': form})
-    
+

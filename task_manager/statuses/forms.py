@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from .models import Status
 from task_manager.functions import attrs_add
 
-class StatuseForm(ModelForm):
+class StatusForm(ModelForm):
     class Meta:
         model = Status
         fields = ["name"]
