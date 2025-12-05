@@ -23,6 +23,10 @@ lint:
 	uv run ruff check .
 PHONY: lint
 
+makemigrations:
+	uv run manage.py makemigrations
+.PHONY: makemigrations
+
 messages:
 	uv run django-admin makemessages -l ru
 .PHONY: messages

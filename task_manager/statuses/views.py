@@ -3,12 +3,10 @@ from django.shortcuts import redirect, render
 from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.generic import ListView
-
+# Create your views here.
 from .forms import StatusForm
 from .mixins import StatusRequreMessageMixin
 from .models import Status
-
-# Create your views here.
 
 
 # path ''
