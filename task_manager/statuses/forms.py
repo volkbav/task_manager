@@ -2,7 +2,7 @@ from django.forms import ModelForm
 from django.utils.translation import gettext_lazy as _
 
 from .models import Status
-
+from task_manager.functions import attrs_add
 
 class StatuseForm(ModelForm):
     class Meta:
@@ -19,9 +19,5 @@ class StatuseForm(ModelForm):
             'name': _("Name")
         }
         
-        for name, field in self.fields.items():
-            field.widget.attrs.setdefault('class', 'form-control')
-            if name in placeholders:
-                field.widget.attrs['placeholder'] = placeholders[name]
+        attrs_add(self.fields, placeholders)
 
-    
