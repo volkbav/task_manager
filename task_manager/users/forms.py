@@ -4,7 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django.utils.translation import gettext_lazy as _
-
+from task_manager.functions import attrs_add
 
 class UserFormCreate(ModelForm):
     password1 = forms.CharField(
@@ -32,11 +32,10 @@ class UserFormCreate(ModelForm):
             'last_name': _("Last name"),
             'username': _("Username"),
         }
-        for name, field in self.fields.items():
-            field.widget.attrs.setdefault('class', 'form-control')
-            if name in placeholders:
-                field.widget.attrs['placeholder'] = placeholders[name]
-
+        
+        attrs_add(self.fields, placeholders)
+        
+        
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'username', 'password1']

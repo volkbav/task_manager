@@ -5,8 +5,6 @@ from django.utils.translation import gettext_lazy as _
 
 
 class UserPermissionMixin(LoginRequiredMixin):
-
-    # LoginRequiredMixin
     login_url = "login"
 
     def dispatch(self, request, *args, **kwargs):
