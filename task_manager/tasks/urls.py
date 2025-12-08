@@ -3,8 +3,8 @@ from django.urls import path
 from .views import (
     TaskCreateView,
     TaskDeleteView,
-    TaskUpdateView,
     TasksIndexView,
+    TaskUpdateView,
 )
 
 app_name = 'tasks'
