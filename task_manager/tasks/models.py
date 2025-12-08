@@ -1,7 +1,7 @@
-from django.db import models
 from django.contrib.auth.models import User
-from task_manager.statuses.models import Status
+from django.db import models
 
+from task_manager.statuses.models import Status
 
 
 # Create your models here.
@@ -13,16 +13,29 @@ class Task(models.Model):
         on_delete=models.PROTECT,
         blank=False,
         related_name='tasks',
-#        null=True
     )
     author = models.ForeignKey(
         User,
-        on_delete=models.CASCADE,
-        related_name='users',
-#        null=True
+        on_delete=models.PROTECT,
+        related_name='author_tasks',
+        blank=False,
+        null=False,
+    )
+    description = models.TextField(
+        blank= True,
+        null=True,
+    )
+    executor = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='tasks_executor',
     )
     
- #   class Meta:
- #       verbose_name_plural = 'tasks'
+    class Meta:
+        ordering = ['-created_at']
+
     def __str__(self):
         return self.name
+        
