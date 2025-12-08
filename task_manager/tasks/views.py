@@ -1,12 +1,12 @@
 from django.contrib import messages
-
-# from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render
 from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.generic import ListView
 
-# from .forms import TaskFormCreate
-# from task_manager.mixins import RequireMessageMixin
+from task_manager.mixins import RequireMessageMixin
+
+from .forms import TaskForm
 from .models import Task
 
 
@@ -19,27 +19,27 @@ class TasksIndexView(ListView):
 
 
 # # path 'create/'
-# class StatusCreateView(RequireMessageMixin, View):
-#     def get(self, request, *args, **kwargs):
-#         form = StatusForm()
-#         context = {
-#             "form": form,
-#             "button": _("Create"),
-#         }
-#         return render(request, "statuses/create.html", context)
+class TaskCreateView(RequireMessageMixin, View):
+    def get(self, request, *args, **kwargs):
+        form = TaskForm()
+        context = {
+            "form": form,
+            "button": _("Create"),
+        }
+        return render(request, "tasks/create.html", context)
         
-#     def post(self, request, *args, **kwargs):
-#         form = StatusForm(request.POST)
+    def post(self, request, *args, **kwargs):
+        form = TaskForm(request.POST or None, user=request.user)
         
-#         if form.is_valid():
-#             form.save()
-#             messages.success(request, _("The status was created successfully"))
-#             return redirect('statuses:statuses') 
-#         context = {
-#             'form': form,
-#             'button': _("Create"),
-#         }
-#         return render(request, 'statuses/create.html', context)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _("The task was created successfully"))
+            return redirect('tasks:tasks') 
+        context = {
+            'form': form,
+            'button': _("Create"),
+        }
+        return render(request, 'tasks/create.html', context)
 
 
 # # path 'delete'

@@ -1,82 +1,51 @@
 # tasks/forms.py
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.models import User
+from .models import Task
 from django.forms import ModelForm
 from django.utils.translation import gettext_lazy as _
 
 from task_manager.functions import attrs_add
 
 
-class TaskFormCreate(ModelForm):
-    password1 = forms.CharField(
-        widget=forms.PasswordInput(attrs={
-            'class': 'form-control',
-            'placeholder': _("Password"),
-        }),
-        label=_("Password"),
-        help_text=_("Your password must contain at least 3 characters.")
-    )
-    password2 = forms.CharField(
-        widget=forms.PasswordInput(attrs={
-            'class': 'form-control',
-            'placeholder': _("Confirm password"),
-        }),
-        label=_("Confirm password"),
-        help_text=_("Please enter the password again to confirm.",)
-    )
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        placeholders = {
-            'first_name': _("First name"),
-            'last_name': _("Last name"),
-            'username': _("Username"),
-        }
-        
-        attrs_add(self.fields, placeholders)
+class TaskForm(ModelForm):
         
     class Meta:
-        model = User
-        fields = ['first_name', 'last_name', 'username', 'password1']
+        model = Task
+        fields = [
+            'name',
+            'description',
+            'status',
+            'executor',
+            # 'tag',
+        ]
         labels = {
-            'first_name': _("First name"),
-            'last_name': _("Last name"),
-            'username': _("Username"),
-            'password1': _("Password"),
+            'name': _("Name"),
+            'description': _("Description"),
+            'status': _("Status"),
+            'executor': _("Executor"),
+            # 'tag': _("Tags")
         }
-        help_texts = {
-            'username': _(
-                "Required field. No more than 150 characters. "
-                "Only letters, numbers, and symbols @/./+/-/_."
-            ),
-        }
-
-    def clean(self):
-        cleaned_data = super().clean()
-        password1 = cleaned_data.get("password1")
-        password2 = cleaned_data.get("password2")
-
-        if password1 and password2 and password1 != password2:
-            self.add_error("password2", _("Passwords do not match"))
-        elif len(password1) < 3:
-            self.add_error("password2", _(
-                "The entered password is too short. "
-                "It must contain at least 3 characters."))
-        return cleaned_data
-    
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        user.set_password(self.cleaned_data['password1'])
-        if commit:
-            user.save()
-        return user
-    
-
-class UserFormLogin(AuthenticationForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-control'
         
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)  
+
+        super().__init__(*args, **kwargs)
+        
+        placeholders = {
+            'name': _("Name"),
+            'description': _("Description"),
+            'status': _("Status"),
+            'executor': _("Executor"),
+            'tag': _("Tags")
+        }
+    
+        attrs_add(self.fields, placeholders)
+        
+    def save(self, commit=True):
+        task = super().save(commit=False)
+        if self.user:
+            task.author = self.user
+        if commit:
+            task.save()
+        return task
+
