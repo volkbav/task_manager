@@ -39,6 +39,7 @@ class UserPermissionMixin(RequireMessageMixin):
 
         return super().dispatch(request, *args, **kwargs)
     
+    
 class TaskPermissionMixin(RequireMessageMixin):
     def dispatch(self, request, *args, **kwargs):
         response = self.check_login(request)
