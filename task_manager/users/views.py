@@ -13,6 +13,7 @@ from task_manager.mixins import UserPermissionMixin
 
 from .forms import UserFormCreate
 
+from django.db.models import ProtectedError 
 
 # path ''
 class UsersIndexView(ListView):
@@ -64,10 +65,17 @@ class UserDeleteView(UserPermissionMixin, View):
         user_pk = kwargs.get('pk')
         user = User.objects.get(pk=user_pk)
         if user:
-            user.delete()
+            try:
+                user.delete()
+            except ProtectedError:
+                messages.error(
+                    request,
+                    _("It is not possible to delete a user "
+                        "because it is being used"))
+                return redirect('users:users')
             messages.success(request, _("User successfully deleted"))
             return redirect('users:users')  # Редирект на указанный маршрут
-        messages.error(request, _('Ooops'))
+        messages.error(request, _('Oops'))
         return redirect('users:users')
 
 
