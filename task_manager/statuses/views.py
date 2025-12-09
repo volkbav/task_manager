@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.db.models import ProtectedError
 from django.shortcuts import redirect, render
 from django.utils.translation import gettext_lazy as _
 from django.views import View
@@ -8,7 +9,6 @@ from task_manager.mixins import RequireMessageMixin
 
 from .forms import StatusForm
 from .models import Status
-from django.db.models import ProtectedError
 
 
 # Create your views here.
@@ -64,7 +64,7 @@ class StatusDeleteView(RequireMessageMixin, View):
         if status:
             try:
                 status.delete()
-            except:
+            except ProtectedError:
                 messages.error(
                     request,
                     _("It is not possible to delete a status "
