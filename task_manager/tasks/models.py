@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+from task_manager.labels.models import Label
 from task_manager.statuses.models import Status
 
 
@@ -31,6 +32,12 @@ class Task(models.Model):
         blank=True,
         on_delete=models.SET_NULL,
         related_name='tasks_executor',
+    )
+    labels = models.ManyToManyField(
+        Label,
+        related_name='tasks',
+        blank=True,
+        null=True
     )
     
     class Meta:
