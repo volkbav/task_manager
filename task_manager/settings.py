@@ -60,6 +60,8 @@ INSTALLED_APPS = [
     'django_bootstrap5',
     # add django_extensions for REPL
     'django_extensions',
+    # Django-filter
+    'django_filters',
     # django app
     'django.contrib.admin',  # ядро аутентификации фреймворка и стандартные модели
     'django.contrib.auth',

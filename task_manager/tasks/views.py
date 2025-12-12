@@ -13,6 +13,9 @@ from task_manager.mixins import (
 from .forms import TaskForm
 from .models import Task
 
+from django_filters.views import FilterView
+from .filter import TaskFilter
+
 
 # Create your views here.
 # path ''
@@ -106,3 +109,16 @@ class TaskUpdateView(LoginRequiredMixin, View):
 
         return render(request, 'tasks/update.html', context)
     
+
+class TaskFilterView(FilterView):
+    def get(self, request, *args, **kwargs):
+        f = TaskFilter(
+            request.GET, 
+            queryset=Task.objects.all(), 
+            request=request
+        )
+        return render(
+            request,
+            'tasks/filter.html',
+            {'filter': f}
+        )
