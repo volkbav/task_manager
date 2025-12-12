@@ -6,7 +6,7 @@ from task_manager.functions import attrs_add
 from .models import Label
 
 
-class StatusForm(ModelForm):
+class LabelForm(ModelForm):
     class Meta:
         model = Label
         fields = ["name"]

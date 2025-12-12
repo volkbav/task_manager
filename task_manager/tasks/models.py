@@ -37,7 +37,6 @@ class Task(models.Model):
         Label,
         related_name='tasks',
         blank=True,
-        null=True
     )
     
     class Meta:

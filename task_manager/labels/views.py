@@ -7,7 +7,7 @@ from django.views.generic import ListView
 
 from task_manager.mixins import RequireMessageMixin
 
-# from .forms import StatusForm
+from .forms import LabelForm
 from .models import Label
 
 
@@ -19,94 +19,92 @@ class LabelsIndexView(RequireMessageMixin, ListView):
     context_object_name = "labels"
 
 
-# # path 'create/'
-# class StatusCreateView(RequireMessageMixin, View):
-#     def get(self, request, *args, **kwargs):
-#         form = StatusForm()
-#         context = {
-#             "form": form,
-#             "button": _("Create"),
-#         }
-#         return render(request, "statuses/create.html", context)
+# path 'create/'
+class LabelCreateView(RequireMessageMixin, View):
+    def get(self, request, *args, **kwargs):
+        form = LabelForm()
+        context = {
+            "form": form,
+            "button": _("Create"),
+        }
+        return render(request, "labels/create.html", context)
         
-#     def post(self, request, *args, **kwargs):
-#         form = StatusForm(request.POST)
+    def post(self, request, *args, **kwargs):
+        form = LabelForm(request.POST)
         
-#         if form.is_valid():
-#             form.save()
-#             messages.success(request, _("The status was created successfully"))
-#             return redirect('statuses:statuses') 
-#         context = {
-#             'form': form,
-#             'button': _("Create"),
-#         }
-#         return render(request, 'statuses/create.html', context)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _("The label was created successfully"))
+            return redirect('labels:index') 
+        context = {
+            'form': form,
+            'button': _("Create"),
+        }
+        return render(request, 'labels/create.html', context)
 
 
-# # path 'delete'
-# class StatusDeleteView(RequireMessageMixin, View):
-#     def get(self, request, *args, **kwargs):
-#         status_pk = kwargs.get('pk')
-#         name = Status.objects.get(pk=status_pk).name
-#         context = {
-#             "status_pk": status_pk,
-#             "name": name,
-#         }
-#         return render(
-#             request,
-#             "statuses/delete.html",
-#             context
-#         )
+# path 'delete'
+class LabelDeleteView(RequireMessageMixin, View):
+    def get(self, request, *args, **kwargs):
+        label_pk = kwargs.get('pk')
+        name = Label.objects.get(pk=label_pk).name
+        context = {
+            "label_pk": label_pk,
+            "name": name,
+        }
+        return render(
+            request,
+            "labels/delete.html",
+            context
+        )
     
-#     def post(self, request, *args, **kwargs):
-#         status_pk = kwargs.get('pk')
-#         status = Status.objects.get(pk=status_pk)
-#         if status:
-#             try:
-#                 status.delete()
-#             except ProtectedError:
-#                 messages.error(
-#                     request,
-#                     _("It is not possible to delete a status "
-#                         "because it is being used"))
-#                 return redirect('statuses:statuses')
-#             messages.success(request, _("Status successfully deleted"))
-#             return redirect('statuses:statuses')
-#         messages.error(request, _('Oops'))
-#         return redirect('statuses:statuses')
+    def post(self, request, *args, **kwargs):
+        label_pk = kwargs.get('pk')
+        label = Label.objects.get(pk=label_pk)
+        if label.tasks.exists():
+            messages.error(
+                request,
+                _("It is not possible to delete a label "
+                    "because it is being used"))
+            return redirect('labels:index')
+        else:
+            label.delete()
+            messages.success(request, _("Label successfully deleted"))
+            return redirect('labels:index')
 
 
-# # path 'update/'
-# class StatusUpdateView(RequireMessageMixin, View):
-#     def get(self, request, *args, **kwargs):
-#         status_pk = kwargs.get('pk')
-#         status = Status.objects.get(pk=status_pk)
-#         form = StatusForm(instance=status)
-#         context = {
-#             "form": form,
-#             "status_pk": status_pk,
-#             "button": _("Edit"),
-#         }
-#         return render(
-#             request,
-#             "statuses/update.html",
-#             context,
-#         )
 
-#     def post(self, request, *args, **kwargs):
-#         status_pk = kwargs.get('pk')
+# path 'update/'
+class LabelUpdateView(RequireMessageMixin, View):
+    def get(self, request, *args, **kwargs):
+        label_pk = kwargs.get('pk')
+        label = Label.objects.get(pk=label_pk)
+        form = LabelForm(instance=label)
+        context = {
+            "form": form,
+            "label_pk": label_pk,
+            "button": _("Edit"),
+        }
+        return render(
+            request,
+            "labels/update.html",
+            context,
+        )
+
+    def post(self, request, *args, **kwargs):
+        label_pk = kwargs.get('pk')
         
-#         status = Status.objects.get(pk=status_pk)
-#         form = StatusForm(request.POST, instance=status)
+        label = Label.objects.get(pk=label_pk)
+        form = LabelForm(request.POST, instance=label)
         
-#         if form.is_valid():
-#             form.save()
-#             messages.success(request, _("Status successfully edited"))
-#             return redirect('statuses:statuses')
-#         context = {
-#             'form': form,
-#             "button": _("Edit"),
-#             }
+        if form.is_valid():
+            form.save()
+            messages.success(request, _("Label successfully edited"))
+            return redirect('labels:index')
+        context = {
+            'form': form,
+            "button": _("Edit"),
+            }
 
-#         return render(request, 'statuses/update.html', context)
+        return render(request, 'labels/update.html', context)
     

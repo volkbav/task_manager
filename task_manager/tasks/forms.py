@@ -1,4 +1,5 @@
 # tasks/forms.py
+from django import forms
 from django.forms import ModelForm
 from django.utils.translation import gettext_lazy as _
 
@@ -16,15 +17,19 @@ class TaskForm(ModelForm):
             'description',
             'status',
             'executor',
-            # 'tag',
+             'labels',
         ]
         labels = {
             'name': _("Name"),
             'description': _("Description"),
             'status': _("Status"),
             'executor': _("Executor"),
-            # 'tag': _("Tags")
+             'labels': _("Labels")
         }
+        widgets = {
+            'labels': forms.SelectMultiple(attrs={"class": "form-control"}),
+        }
+
         
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)  
@@ -47,5 +52,6 @@ class TaskForm(ModelForm):
             task.author = self.user
         if commit:
             task.save()
+            self.save_m2m()  # сохраняем связь ManyToMany
         return task
 
