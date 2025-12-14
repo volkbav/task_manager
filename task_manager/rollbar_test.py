@@ -1,8 +1,10 @@
 import rollbar
 from django.http import HttpResponse
+from django.views.decorators.http import require_GET
 
 
 # test Rollbar
+@require_GET
 def trigger_error(request):
     try:
         a = None
