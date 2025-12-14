@@ -32,7 +32,7 @@ class TaskForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)  
-
+        self.label_suffix = ""
         super().__init__(*args, **kwargs)
         
         placeholders = {

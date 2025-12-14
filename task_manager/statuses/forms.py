@@ -16,7 +16,7 @@ class StatusForm(ModelForm):
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
+        self.label_suffix = ""
         placeholders = {
             'name': _("Name")
         }
