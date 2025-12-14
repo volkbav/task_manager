@@ -1,4 +1,5 @@
 # task_manager/tasks/filter.py
+from django.contrib.auth import get_user_model
 from django.forms import CheckboxInput, Select
 from django.utils.translation import gettext_lazy as _
 from django_filters import (
@@ -7,8 +8,8 @@ from django_filters import (
     ModelChoiceFilter,
 )
 
-from task_manager.functions import attrs_add
 from task_manager.labels.models import Label
+from task_manager.statuses.models import Status
 
 from .models import Task
 
@@ -17,7 +18,19 @@ class TaskFilter(FilterSet):
     self_tasks = BooleanFilter(
         label=_("Only my tasks"),
         method="filter_self_tasks",
-        widget=CheckboxInput()
+        widget=CheckboxInput(attrs={"class": "form-check-input"})
+    )
+
+    status = ModelChoiceFilter(
+        queryset=Status.objects.all(),
+        label=_("Status"),  # Явно задаем лейбл
+        widget=Select(attrs={"class": "form-select"})
+    )
+    
+    executor = ModelChoiceFilter(
+        queryset=get_user_model().objects.all(),
+        label=_("Executor"),  # Явно задаем лейбл
+        widget=Select(attrs={"class": "form-select"})
     )
 
     labels = ModelChoiceFilter(
@@ -44,7 +57,12 @@ class TaskFilter(FilterSet):
             "labels": _("Label"),
         }
 
-        attrs_add(self.form.fields, placeholders, )
+        for field_name in ["status", "executor", "labels"]:
+            if field_name in self.form.fields:
+                placeholder = self.form.fields[field_name].label
+                self.form.fields[field_name].widget.attrs['placeholder'] = str(placeholder)
+
+        # attrs_add(self.form.fields, placeholders)
 
     def filter_self_tasks(self, queryset, name, value):
         if value:

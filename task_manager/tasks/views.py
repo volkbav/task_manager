@@ -1,3 +1,4 @@
+# task_manager/tasks/views.py
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.utils.translation import gettext_lazy as _
@@ -21,6 +22,8 @@ class TasksIndexView(RequireMessageMixin, FilterView):
     model = Task
     template_name = "tasks/index.html"
     filterset_class = TaskFilter
+
+    
 
 
 # path 'create/'
