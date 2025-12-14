@@ -23,8 +23,6 @@ class TasksIndexView(RequireMessageMixin, FilterView):
     template_name = "tasks/index.html"
     filterset_class = TaskFilter
 
-    
-
 
 # path 'create/'
 class TaskCreateView(RequireMessageMixin, View):

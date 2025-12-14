@@ -51,18 +51,11 @@ class TaskFilter(FilterSet):
         super().__init__(*args, **kwargs)
 
         self.form.label_suffix = ""  # убираем двоеточие
-        placeholders = {
-            "status": _("Status"),
-            "executor": _("Executor"),
-            "labels": _("Label"),
-        }
 
         for field_name in ["status", "executor", "labels"]:
             if field_name in self.form.fields:
                 placeholder = self.form.fields[field_name].label
-                self.form.fields[field_name].widget.attrs['placeholder'] = str(placeholder)
-
-        # attrs_add(self.form.fields, placeholders)
+                self.form.fields[field_name].widget.attrs['placeholder'] = str(placeholder)  # noqa: E501
 
     def filter_self_tasks(self, queryset, name, value):
         if value:

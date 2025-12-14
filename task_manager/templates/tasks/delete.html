@@ -9,7 +9,7 @@
   </p>
   <form action="{% url 'tasks:delete' task_pk %}" method="post" class="mb-3">
     {% csrf_token %}
-    <input type="submit" value="{% trans "Yes, delete" %} {{ name }}" class="btn btn-danger">
+    <input type="submit" value="{% trans "Yes, delete" %}" class="btn btn-danger">
 
   </form>
 </div>
