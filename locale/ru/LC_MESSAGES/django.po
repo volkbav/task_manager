@@ -324,7 +324,7 @@ msgstr ""
 
 #: task_manager/users/views.py:31 task_manager/users/views.py:43
 msgid "Register"
-msgstr "Регистрация"
+msgstr "Зарегистрировать"
 
 #: task_manager/users/views.py:39
 msgid "User created"
