@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.utils.translation import gettext_lazy as _
 from django.views import View
-from django.views.generic import ListView
+from django_filters.views import FilterView
 
 from task_manager.mixins import (
     LoginRequiredMixin,
@@ -10,11 +10,9 @@ from task_manager.mixins import (
     TaskPermissionMixin,
 )
 
+from .filter import TaskFilter
 from .forms import TaskForm
 from .models import Task
-
-from django_filters.views import FilterView
-from .filter import TaskFilter
 
 
 # Create your views here.
@@ -23,6 +21,7 @@ class TasksIndexView(RequireMessageMixin, FilterView):
     model = Task
     template_name = "tasks/index.html"
     filterset_class = TaskFilter
+
 
 # path 'create/'
 class TaskCreateView(RequireMessageMixin, View):
