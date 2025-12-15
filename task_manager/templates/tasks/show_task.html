@@ -18,7 +18,7 @@
       <div class="container">
         <div class="row p-1">
           <div class="col">{% trans "Author" %}</div>
-          <div class="col">{{ task.author }}</div>
+          <div class="col">{{ task.author.get_full_name|default:task.author.username }}</div>
         </div>
         <div class="row p-1">
           <div class="col">{% trans "Executor" %}</div>
@@ -49,11 +49,9 @@
             <a href="{% url 'tasks:delete' task.pk %}">{% trans "Delete" %}</a>
           </div>
         </div>
+
+      </div>
     </div>
-
-
-    </div>
-
   </div>
 </div>
 {% endblock %}
