@@ -50,7 +50,9 @@
         {% for task in filter.qs %}
         <tr>
           <td>{{ task.id }}</td>
-          <td>{{ task.name }}</td>
+          <td>
+            <a href="{% url 'tasks:task' task.pk %}">{{ task.name }}</a>
+          </td>
           <td>{{ task.status }}</td>
           <td>{{ task.author }}</td>
           <td>{{ task.executor }}</td>

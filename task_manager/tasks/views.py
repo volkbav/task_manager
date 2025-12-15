@@ -24,7 +24,7 @@ class TasksIndexView(RequireMessageMixin, FilterView):
     filterset_class = TaskFilter
 
 
-# path 'create/'
+# path '<int:pk>/create/'
 class TaskCreateView(RequireMessageMixin, View):
     def get(self, request, *args, **kwargs):
         form = TaskForm()
@@ -48,7 +48,7 @@ class TaskCreateView(RequireMessageMixin, View):
         return render(request, 'tasks/create.html', context)
 
 
-# path 'delete'
+# path '<int:pk>/delete'
 class TaskDeleteView(TaskPermissionMixin, View):
     def get(self, request, *args, **kwargs):
         task_pk = kwargs.get('pk')
@@ -74,7 +74,7 @@ class TaskDeleteView(TaskPermissionMixin, View):
         return redirect('tasks:index')
 
 
-# path 'update/'
+# path '<int:pk>/update/'
 class TaskUpdateView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         task_pk = kwargs.get('pk')
@@ -107,3 +107,14 @@ class TaskUpdateView(LoginRequiredMixin, View):
             }
 
         return render(request, 'tasks/update.html', context)
+    
+
+# path '<int:pk>/'
+class TaskView(RequireMessageMixin, View):
+    def get(self, request, *args, **kwargs):
+        task_pk = kwargs.get('pk')
+        task = Task.objects.get(pk=task_pk)
+        context = {
+            "task": task,
+        }
+        return render(request, "tasks/show_task.html", context)
