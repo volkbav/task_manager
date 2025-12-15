@@ -57,6 +57,11 @@ class TaskFilter(FilterSet):
                 placeholder = self.form.fields[field_name].label
                 self.form.fields[field_name].widget.attrs['placeholder'] = str(placeholder)  # noqa: E501
 
+        if 'executor' in self.form.fields:
+            self.form.fields['executor'].label_from_instance = lambda obj: (
+            f"{obj.first_name} {obj.last_name}".strip() or obj.username
+            )
+
     def filter_self_tasks(self, queryset, name, value):
         if value:
             return queryset.filter(author=self.request.user)
