@@ -16,12 +16,14 @@ jobs:
         run: |
           pip install uv
           make install
+      - name: Check linter
+        run: |
+          make lint
       - name: Add migrations
         run: |
           make migrate
       - name: Run linter and pytest
         run: |
-          make lint
           make test
       - name: SonarQubeScan
         uses: SonarSource/sonarqube-scan-action@v6
