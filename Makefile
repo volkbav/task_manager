@@ -45,9 +45,16 @@ start:
 .PHONY: start
 
 test:
-	uv run pytest --cov=task_manager --cov-report=xml
+	uv run coverage run --source='.' manage.py test
+	uv run coverage xml
+	uv run coverage report --show-missing
 .PHONY: test
 
 test_django:
 	uv run manage.py test
 .PHONY: test_django
+
+test_with_coverage:
+	uv run coverage run --source='.' manage.py test
+	uv run coverage xml
+.PHONY: test_with_coverage
