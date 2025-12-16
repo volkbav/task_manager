@@ -19,10 +19,13 @@ jobs:
       - name: Check linter
         run: |
           make lint
+      - name: Copy environment variables
+        run: |
+          cp .env_example .env
       - name: Add migrations
         run: |
           make migrate
-      - name: Run linter and pytest
+      - name: Run tests
         run: |
           make test
       - name: SonarQubeScan
