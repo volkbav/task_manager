@@ -3,5 +3,19 @@
 {% load i18n %}
 
 {% block content %}
-  <h1>{% blocktrans %}Hello, {{ who }}!{% endblocktrans %}</h1>
+<p></p>
+<div class="container wrapper flex-grow-1 mb-3">
+  
+  <div class="card text-center">
+    <div class="card-body bg-light">
+      <h1 class="my-4">
+        {% trans "Welcome to task manager" %}
+      </h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 {% endblock %}
+
