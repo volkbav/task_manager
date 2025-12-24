@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-15 15:53+0300\n"
+"POT-Creation-Date: 2025-12-24 14:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -222,10 +222,9 @@ msgstr "Изменение пользователя"
 msgid "Log in"
 msgstr "Войти"
 
-#: task_manager/templates/root.html:6
-#, python-format
-msgid "Hello, %(who)s!"
-msgstr "Привет, %(who)s!"
+#: task_manager/templates/root.html:12
+msgid "Welcome to task manager"
+msgstr "Добро пожаловать в менеджер задач"
 
 #: task_manager/templates/statuses/create.html:7
 #: task_manager/templates/statuses/index.html:8
@@ -353,17 +352,20 @@ msgstr "Пользователь успешно удален"
 msgid "User successfully edited"
 msgstr "Пользователь успешно изменен"
 
-#: task_manager/views.py:16
-msgid "World"
-msgstr "Мир"
-
-#: task_manager/views.py:25
+#: task_manager/views.py:24
 msgid "Logged in successfully"
 msgstr "Вы залогинены"
 
-#: task_manager/views.py:33
+#: task_manager/views.py:32
 msgid "You have logged out"
 msgstr "Вы разлогинены"
+
+#, python-format
+#~ msgid "Hello, %(who)s!"
+#~ msgstr "Привет, %(who)s!"
+
+#~ msgid "World"
+#~ msgstr "Мир"
 
 #~ msgid "User created"
 #~ msgstr "Пользователь создан"
