@@ -10,6 +10,10 @@ class Status(models.Model):
         verbose_name=_("Status")
         )
     created_at = models.DateTimeField(auto_now_add=True)
+    order = models.IntegerField(
+        blank=True,
+        null=True,
+    )
     
     class Meta:
         verbose_name_plural = 'statuses'
