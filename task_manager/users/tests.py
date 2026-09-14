@@ -5,14 +5,17 @@ from django.urls import reverse
 
 # Create your tests here.
 class UserTest(TestCase):
+    fixtures = ['users.json']
     
     def setUp(self):
-        self.user = User.objects.create_user(
-            first_name="John",
-            last_name="John",
-            username="Jonny",
-            password="password123"  # NOSONAR
-        )
+        self.user = User.objects.get(username="Jonny")
+        self.second_user = User.objects.get(username="Bob")
+    #     self.user = User.objects.create_user(
+    #         first_name="John",
+    #         last_name="John",
+    #         username="Jonny",
+    #         password="password123"  # NOSONAR
+    #     )
     
     # проверяем ответ от приложения users
     def test_user_list(self):
@@ -33,7 +36,7 @@ class UserTest(TestCase):
         self.client.post(
             update_url,
             data={
-                "username": "Bob",
+                "username": self.second_user.username,
                 "password1": "password123",  # NOSONAR
                 "password2": "password123",  # NOSONAR
             }
@@ -45,4 +48,4 @@ class UserTest(TestCase):
 
         # Проверяем, что новое имя отрисовано в HTML
         self.assertContains(response, "Bob")
-        self.assertNotContains(response, "John")
+        self.assertNotContains(response, "Johny")
