@@ -9,7 +9,10 @@ from .models import Status
 class StatusForm(ModelForm):
     class Meta:
         model = Status
-        fields = ["name"]
+        fields = [
+            "name",
+            "order",
+            ]
         labels = {
             'name': _("Name"),
         }
